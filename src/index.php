@@ -1,6 +1,7 @@
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       if( $_POST["username"] == "admin" && $_POST["password"] == "admin" ) {
+        header('X-F5-AUTH: succeeded');
       } else {
         header("HTTP/1.0 401 Unauthorized");
         header('X-F5-AUTH: failed');
