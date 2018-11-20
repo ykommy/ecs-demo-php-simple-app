@@ -19,12 +19,33 @@
                 <h2>Congratulations</h2>
                 <p>Your PHP application is now running on a container in Amazon ECS.</p>
                 <p>The container is running PHP version <?php echo phpversion(); ?>.</p>
+
+                <br>
+                <br>
+                <form action="index.php" method = "post">
+                    Username : <input type ="text" name="username" value = ""><br />
+                    Password : <input type = "text" name="password" value = ""><br />
+                    <input type="submit" name ="login" value = "Login">
+                </form>
+                <?php
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                      if( $_POST["username"] == "admin" && $_POST["password"] == "admin" ) {
+                ?>
+                    <p style="color: blue">Logged in!!</p>
+                <?php
+                      } else {
+                ?>
+                    <p style="color: red">Wrong Username or Password!</p>
+                <?php
+                      }
+                    }
+                ?>
+
                 <?php
                         $myfile = fopen("/var/www/my-vol/date", "r") or die("");
                         echo fread($myfile,filesize("/var/www/my-vol/date"));
                         fclose($myfile);
                 ?>
-
             </div>
         </div>
 
