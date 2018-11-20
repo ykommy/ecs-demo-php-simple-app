@@ -2,7 +2,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       if( $_POST["username"] == "admin" && $_POST["password"] == "admin" ) {
       } else {
-        http_response_code(401);
+        header("HTTP/1.0 401 Unauthorized");
         header('X-F5-AUTH: failed');
       }
     }
