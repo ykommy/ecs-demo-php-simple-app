@@ -1,3 +1,14 @@
+<?php
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+      if( $_POST["username"] == "admin" && $_POST["password"] == "admin" ) {
+      } else {
+        http_response_code(401);
+        header('X-F5-AUTH: failed');
+      }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,11 +33,6 @@
 
                 <br>
                 <br>
-                <form action="index.php" method = "post">
-                    Username : <input type ="text" name="username" value = ""><br />
-                    Password : <input type = "text" name="password" value = ""><br />
-                    <input type="submit" name ="login" value = "Login">
-                </form>
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST") {
                       if( $_POST["username"] == "admin" && $_POST["password"] == "admin" ) {
@@ -40,12 +46,11 @@
                       }
                     }
                 ?>
-
-                <?php
-                        $myfile = fopen("/var/www/my-vol/date", "r") or die("");
-                        echo fread($myfile,filesize("/var/www/my-vol/date"));
-                        fclose($myfile);
-                ?>
+                <form action="index.php" method = "post">
+                    Username : <input type ="text" name="username" value = ""><br />
+                    Password : <input type = "text" name="password" value = ""><br />
+                    <input type="submit" name ="login" value = "Login">
+                </form>
             </div>
         </div>
 
